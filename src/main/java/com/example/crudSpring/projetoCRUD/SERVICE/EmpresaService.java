@@ -44,7 +44,7 @@ public class EmpresaService {
     Empresa empresaBuscada = buscaPorId(id).orElseThrow( 
     () -> new IllegalArgumentException("Empresa não encontrada"));
 
-    empresaBuscada.setNome_empresa(dadosAtualizados.getNome_empresa());
+    empresaBuscada.setNome(dadosAtualizados.getNome());
     empresaBuscada.setCnpj(dadosAtualizados.getCnpj());
     empresaBuscada.setRamo(dadosAtualizados.getRamo());
 
@@ -52,7 +52,7 @@ public class EmpresaService {
    }
 
    public List<Empresa> buscarEmpresaPorNome(String nome_empresa){
-    return empresaRepository.findByNome_empresaContainingIgnoreCase(nome_empresa);
+    return empresaRepository.findByNomeContainingIgnoreCase(nome_empresa);
    }
 
 }
