@@ -207,9 +207,11 @@
                     <td th:text="${empresa.cnpj}"></td>
                     <td th:text="${empresa.ramo}"></td>
                     <td>
-                  
-                        <a th:href="@{/empresaCTR/editarEmpresa/{id}(id=${empresa.id_empresa})}">Editar</a>
-                            
+
+                        <!--Botão Editar-->
+                        <a th:href="@{/empresaCTR/editar/{id}(id=${empresa.id_empresa})}">Editar</a>
+                        
+                         <!--Botão Excluir-->  
                         <a th:href="@{/empresaCTR/deletarEmpresa/{id}(id=${empresa.id_empresa})}" 
                         onclick="return confirm('Deseja realmente excluir esta empresa?')">Excluir</a>
                     </td>
