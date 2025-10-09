@@ -29,8 +29,8 @@ public class EmpresaService {
    }
 
    //void pq não precisa de retorno
-   public void deletarEmpresa(Empresa dadosEmpresa){
-    empresaRepository.delete(dadosEmpresa);
+   public void deletarEmpresa(Long id){
+    empresaRepository.deleteById(id);
    }
 
    //realizar a busca de dados no banco usando o id criado na classe

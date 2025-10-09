@@ -141,7 +141,7 @@
         <h1>Editar Empresa</h1>
 
         <!-- Formulário para edição -->
-        <form th:action="@{'/empresaCTR/editar/'+${empresaEditar.id_empresa}}"
+        <form th:action="@{'/empresaCTR/atualizarEmpresa/'+${empresaEditar.id_empresa}}"
               th:object="${empresaEditar}" method="post">
 
             <div class="form-group">
@@ -160,7 +160,7 @@
             </div>
 
             <button type="submit">Salvar Alterações</button>
-            <a th:href="@{/empresaCTR//listarTodasEmpresas}">Voltar à Lista de Empresas</a>
+            <a th:href="@{/empresaCTR/listarTodasEmpresas}">Voltar à Lista de Empresas</a>
 
         </form>
     </div>

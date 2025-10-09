@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -61,6 +63,23 @@ public class EmpresaController {
 
         oModel.addAttribute("empresaEditar", objEmpresa);
         return "editarEmpresa";
+    }
+
+    @PostMapping("/atualizarEmpresa/{id}")
+    public String empresaAtualizar(@PathVariable("id") Long id, 
+    @ModelAttribute Empresa objEmpresaAtualizado) {
+
+        empresaService.editarDadoEmpresa(id, objEmpresaAtualizado);
+
+        return "redirect:/empresaCTR/listarTodasEmpresas";
+    }
+    
+    @GetMapping("/deletarEmpresa/{id}")
+    public String apagarEmpresa(@PathVariable ("id") Long id) {
+
+        empresaService.deletarEmpresa(id);
+        
+        return "redirect:/empresaCTR/listarTodasEmpresas";
     }
     
     
