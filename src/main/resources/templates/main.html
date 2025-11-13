@@ -4,19 +4,102 @@
     <meta charset="UTF-8">
     <title>Cadastrar Empresa</title>
 
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 50%, #f8f8ff 100%); /* Gradiente roxo claro variado e harmonioso */
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container principal para centralizar o conteúdo */
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(147, 112, 219, 0.1); /* Sombra sutil com roxo */
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #e6e6fa; /* Borda roxa clara */
+        }
+
+        h2 {
+            text-align: center;
+            color: #9370db; /* Roxo médio para o título */
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        /* Grupo de links */
+        .link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Links estilizados como botões */
+        .link-group a {
+            display: inline-block;
+            color: #9370db;
+            text-decoration: none;
+            padding: 14px 24px;
+            border: 2px solid #9370db;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .link-group a:hover {
+            background-color: #9370db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .link-group a {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+
 </head>
 <body>
-
- 
+    <div class="form-container">
         <h2>Links para as páginas:</h2>
 
-        <a th:href="@{/empresaCTR/viewCadEmpresa}">Cadastrar Empresa</a>
-        <br>
-        <a th:href="@{/funcionarioCTR/formFuncionario}">Cadastrar Funcionario</a>
-        <br>
-        <a th:href="@{/empresaCTR/listarTodasEmpresas}">Listar todas as Empresas / Alterar</a>
-        <br>
-        <a th:href="@{/empresaCTR/formBuscarNome}">Listar empresa por Nome</a>
-                
+        <div class="link-group">
+            <a th:href="@{/empresaCTR/viewCadEmpresa}">Cadastrar Empresa</a>
+            <a th:href="@{/funcionarioCTR/formFuncionario}">Cadastrar Funcionario</a>
+            <a th:href="@{/empresaCTR/listarTodasEmpresas}">Listar todas as Empresas / Alterar</a>
+            <a th:href="@{/funcionarioCTR/listarFunc}">Listar todos os Funcionarios / Alterar</a>
+            <a th:href="@{/empresaCTR/formBuscarNome}">Listar empresa por Nome</a>
+        </div>
+    </div>
 </body>
 </html>

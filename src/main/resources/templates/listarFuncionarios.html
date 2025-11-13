@@ -5,47 +5,176 @@
     <title>Listar Funcionários</title>
 
     <style>
-    table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    }
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 50%, #f8f8ff 100%); /* Gradiente roxo claro variado e harmonioso */
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container principal para centralizar o conteúdo */
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(147, 112, 219, 0.1); /* Sombra sutil com roxo */
+            max-width: 1000px; /* Aumentado para acomodar a tabela */
+            width: 100%;
+            border: 1px solid #e6e6fa; /* Borda roxa clara */
+        }
+
+        h2 {
+            text-align: center;
+            color: #9370db; /* Roxo médio para o título */
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        /* Estilos para a tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 2px solid #e6e6fa; /* Borda roxa clara para a tabela */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e6e6fa; /* Borda inferior roxa clara */
+        }
+
+        th {
+            background-color: #f0f0ff; /* Fundo roxo muito claro para cabeçalhos */
+            color: #9370db; /* Roxo para texto dos cabeçalhos */
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #fafaff; /* Fundo alternado levemente roxo */
+        }
+
+        tbody tr:hover {
+            background-color: #e6e6fa; /* Hover roxo claro */
+        }
+
+        /* Estilos para os links de ações */
+        .action-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-links a {
+            color: #9370db;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px solid #9370db;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .action-links a:hover {
+            background-color: #9370db;
+            color: white;
+        }
+
+        /* Link Cadastrar Novo Funcionário estilizado como botão secundário */
+        .cadastrar-link {
+            display: inline-block;
+            color: #9370db;
+            text-decoration: none;
+            padding: 14px 24px;
+            border: 2px solid #9370db;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cadastrar-link:hover {
+            background-color: #9370db;
+            color: white;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px 12px;
+            }
+
+            .action-links {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
     </style>
 
 </head>
 <body>
+    <div class="form-container">
+        <h2>Lista de Funcionários</h2>
 
-<h2>Lista de Funcionários</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th>Salário</th>
+                    <th>Empresa</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="func : ${funcionarios}">
+                    <td th:text="${func.codigo}"></td>
+                    <td th:text="${func.nome}"></td>
+                    <td th:text="${func.cargo}"></td>
+                    <td th:text="${func.salario}"></td>
+                    <td th:text="${func.identificadorEmpresa.nome}"></td>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Nome</th>
-            <th>Cargo</th>
-            <th>Salário</th>
-            <th>Empresa</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="func : ${funcionarios}">
-            <td th:text="${func.codigo}"></td>
-            <td th:text="${func.nome}"></td>
-            <td th:text="${func.cargo}"></td>
-            <td th:text="${func.salario}"></td>
-            <td th:text="${func.empresa.nome}"></td>
-            <td>
-                <a th:href="@{/funcionarioCTR//{id}(id=${func.codigo})}">Editar</a>
+                    <td class="action-links">
+                        <a th:href="@{/funcionarioCTR/{id}(id=${func.codigo})}">Editar</a>
+                        <a th:href="@{'/funcionarioCTR//' + ${func.codigo}}"
+                           onclick="return confirm('Deseja realmente excluir este Funcionário?')">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-                <a th:href="@{'/funcionarioCTR//' + ${func.codigo}}"
-                onclick="return confirm('Deseja realmente excluir este Funcionário?')">Excluir</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<br>
-<a th:href="@{/funcionarioCTR/}">Cadastrar Novo Funcionário</a>
-
+        <a th:href="@{/funcionarioCTR/}" class="cadastrar-link">Cadastrar Novo Funcionário</a>
+    </div>
 </body>
 </html>
