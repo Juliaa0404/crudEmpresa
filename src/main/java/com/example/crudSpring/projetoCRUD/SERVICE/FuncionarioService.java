@@ -36,13 +36,13 @@ public class FuncionarioService {
     @Transactional
     public void atualizarFuncionario(
         Long id, Funcionario dadosAtualizados) {
-            Funcionario objtFuncionario = buscarFuncionarioPorId(id)
+            Funcionario objFuncionario = buscarFuncionarioPorId(id)
             .orElseThrow(() -> new IllegalArgumentException("Funcionario nao encontrado"));
 
-            objtFuncionario.setCargo(dadosAtualizados.getCargo());
-            objtFuncionario.setNome(dadosAtualizados.getNome());
-            objtFuncionario.setSalario(dadosAtualizados.getSalario());
-            objtFuncionario.setIdentificadorEmpresa(dadosAtualizados.getIdentificadorEmpresa());
+            objFuncionario.setCargo(dadosAtualizados.getCargo());
+            objFuncionario.setNome(dadosAtualizados.getNome());
+            objFuncionario.setSalario(dadosAtualizados.getSalario());
+            objFuncionario.setIdentificadorEmpresa(dadosAtualizados.getIdentificadorEmpresa());
 
         }
     
