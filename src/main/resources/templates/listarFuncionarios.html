@@ -166,7 +166,7 @@
                     <td th:text="${func.identificadorEmpresa.nome}"></td>
 
                     <td class="action-links">
-                        <a th:href="@{/funcionarioCTR/{id}(id=${func.codigo})}">Editar</a>
+                        <a th:href="@{/funcionarioCTR/formAtualizar/{id}(id=${func.codigo})}">Editar</a>
                         <a th:href="@{/funcionarioCTR/deletarFuncionario/{id}(id=${func.codigo})}"
                            onclick="return confirm('Deseja realmente excluir este Funcionário?')">Excluir</a>
                     </td>
