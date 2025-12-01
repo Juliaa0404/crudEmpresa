@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <title>Editar Funcionário</title>
     <style>
         /* Reset e configurações básicas */
         * {
@@ -9,9 +11,10 @@
             box-sizing: border-box;
         }
 
+        /* Estilos do corpo e layout geral */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 50%, #f8f8ff 100%); /* Gradiente roxo claro variado e harmonioso */
+            background: linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 50%, #f8f8ff 100%);
             color: #333;
             line-height: 1.6;
             padding: 20px;
@@ -21,28 +24,24 @@
             min-height: 100vh;
         }
 
-        /* Container principal para centralizar o formulário */
+        /* Container principal */
         .form-container {
             background: white;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(147, 112, 219, 0.1); /* Sombra sutil com roxo */
+            box-shadow: 0 4px 20px rgba(147, 112, 219, 0.1);
             max-width: 500px;
             width: 100%;
-            border: 1px solid #e6e6fa; /* Borda roxa clara */
+            border: 1px solid #e6e6fa;
         }
 
-        h1 {
+        /* Tipografia */
+        h2 {
             text-align: center;
-            color: #9370db; /* Roxo médio para o título */
+            color: #9370db;
             margin-bottom: 30px;
             font-size: 28px;
             font-weight: 600;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
         }
 
         label {
@@ -50,40 +49,51 @@
             color: #555;
             margin-bottom: 8px;
             font-size: 16px;
+            display: block;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e6e6fa; /* Borda roxa clara */
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            background-color: #fafaff; /* Fundo levemente roxo */
+        /* Formulário e campos */
+        form {
+            display: flex;
+            flex-direction: column;
         }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #9370db; /* Roxo ao focar */
-            box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.1);
-        }
-
-        input[type="text"]:required {
-            border-left: 4px solid #9370db; /* Indicador visual para campos obrigatórios */
-        }
-
-        br {
-            display: none; /* Remove quebras de linha desnecessárias para layout moderno */
-        }
-
-        /* Espaçamento entre campos */
         .form-group {
             margin-bottom: 20px;
         }
 
-        /* Botão Salvar */
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e6e6fa;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fafaff;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #9370db;
+            box-shadow: 0 0 0 3px rgba(147, 112, 219, 0.1);
+        }
+
+        input[type="text"]:required,
+        input[type="number"]:required {
+            border-left: 4px solid #9370db;
+        }
+
+        select {
+            /* Estilos adicionais para select, se necessário */
+        }
+
+        /* Botões e links */
         button[type="submit"] {
-            background-color: #9370db; /* Roxo principal */
+            background-color: #9370db;
             color: white;
             padding: 14px 24px;
             border: none;
@@ -96,11 +106,10 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #7b68ee; /* Roxo mais escuro no hover */
+            background-color: #7b68ee;
             transform: translateY(-2px);
         }
 
-        /* Link Voltar estilizado como botão secundário */
         a {
             display: inline-block;
             color: #9370db;
@@ -120,45 +129,53 @@
             color: white;
         }
 
-        /* Responsividade para telas menores */
+        /* Responsividade */
         @media (max-width: 600px) {
             .form-container {
                 padding: 20px;
                 margin: 10px;
             }
 
-            h1 {
+            h2 {
                 font-size: 24px;
             }
         }
     </style>
-    <meta charset="UTF-8">
-    <title>Editar Funcionário</title>
 </head>
 <body>
-    <h2>Editar Funcionário</h2>
+    <div class="form-container">
+        <h2>Editar Funcionário</h2>
 
-    <form th:action="@{'/funcionarioCTR/atualizar/'+${funcionario.codigo}}" th:object="${funcionario}" method="post">
-        <label>Nome:</label>
-        <input type="text" th:field="*{nome}" /><br>
+        <form th:action="@{'/funcionarioCTR/atualizarFuncionario/'+${funcionario.codigo}}" th:object="${funcionario}" method="post">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" th:field="*{nome}" />
+            </div>
 
-        <label>Cargo:</label>
-        <input type="text" th:field="*{cargo}" /><br>
+            <div class="form-group">
+                <label>Cargo:</label>
+                <input type="text" th:field="*{cargo}" />
+            </div>
 
-        <label>Salário:</label>
-        <input type="number" step="0.01" th:field="*{salario}" /><br>
+            <div class="form-group">
+                <label>Salário:</label>
+                <input type="number" th:field="*{salario}" />
+            </div>
 
-        <label>Empresa:</label>
-        <select th:field="*{empresa.id_empresa}">
-            <option th:each="empresa : ${empresas}"
-                    th:value="${empresa.id_empresa}"
-                    th:text="${empresa.nome}"
-                    th:selected="${empresa.id_empresa == funcionario.empresa.identificadorEmpresa}">
-            </option>
-        </select><br><br>
+            <div class="form-group">
+                <label>Empresa:</label>
+                <select th:field="*{identificadorEmpresa.id_empresa}">
+                    <option th:each="empresa : ${empresas}"
+                            th:value="${empresa.id_empresa}"
+                            th:text="${empresa.nome}"
+                            th:selected="${empresa.id_empresa == funcionario.identificadorEmpresa.id_empresa}">
+                    </option>
+                </select>
+            </div>
 
-        <button type="submit">Salvar Alterações</button>
-        <a th:href="@{/funcionarioCTR/listarFunc}">Listar todos os Funcionarios</a>
-    </form>
+            <button type="submit">Salvar Alterações</button>
+            <a th:href="@{/funcionarioCTR/listarFunc}">Listar todos os Funcionarios</a>
+        </form>
+    </div>
 </body>
 </html>

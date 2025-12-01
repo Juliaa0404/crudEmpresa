@@ -72,7 +72,20 @@ public class FuncionarioController {
         oModel.addAttribute("funcionario", funcionarioEncontrado);
         oModel.addAttribute("empresas", ligacaoEmpresaService.findAll());
 
-        return  "redirect:/funcionarioCTR/editarFuncionario";
+        return  "editarFuncionario";
     }
+
+    @PostMapping("atualizarFuncionario/{id}")
+    public String editarFuncionario(
+        @PathVariable ("id") Long id,
+        @ModelAttribute Funcionario objFuncionarioAtualizado) {
+
+        ligacaoFuncionarioService.atualizarFuncionario(id, objFuncionarioAtualizado);
+        
+        return "redirect:/funcionarioCTR/listarFunc";
+    }
+    
+    
+    
     
 }
