@@ -85,7 +85,23 @@ public class FuncionarioController {
         return "redirect:/funcionarioCTR/listarFunc";
     }
     
+    @GetMapping("/formBuscarNome")
+    public String mostrarFormBusca(Model oModel) {
+
+        return "buscarFuncionarioNome";
+
+    }
     
-    
+    @GetMapping("/buscarFuncionarioNome")
+    public String executarBuscaPorNome
+    (@RequestParam ("nome") String nome_funcionario, Model oModel) {
+
+        //se colocar o ! antes está "perguntando" se está vazio
+        if(nome_funcionario != null && !nome_funcionario.isEmpty()){
+            oModel.addAttribute("funcionarioNome", ligacaoFuncionarioService.buscarFuncionarioPorNome(nome_funcionario));
+        }
+
+        return "buscarFuncionarioNome";
+    }
     
 }

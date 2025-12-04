@@ -156,35 +156,35 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Buscar empresa por nome</h2>
+        <h2>Buscar funcionário por nome</h2>
 
         <!-- Formulário de busca -->
-        <form th:action="@{/empresaCTR/buscarEmpresaNome}" method="get">
+        <form th:action="@{/funcionarioCTR/buscarFuncionarioNome}" method="get">
             <div class="form-group">
-                <input type="text" name="nome" th:value="${param.nome}" placeholder="Digite o nome da empresa" />
+                <input type="text" name="nome" th:value="${param.nome}" placeholder="Digite o nome do funcionário" />
                 <button type="submit">Buscar</button>
             </div>
         </form>
 
         <!-- Exibe a tabela com os resultados -->
-        <div th:if="${empresaNome}">
-            <h4 th:text="'Resultado da busca: ' + ${empresaNome.size()} + ' empresa(s) encontrada(s)'"></h4>
+        <div th:if="${funcionarioNome}">
+            <h4 th:text="'Resultado da busca: ' + ${funcionarioNome.size()} + ' funcionario(s) encontrado(s)'"></h4>
 
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Código</th>
                         <th>Nome</th>
-                        <th>Cnpj</th>
-                        <th>Ramo</th>
+                        <th>Salario</th>
+                        <th>Cargo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="empresa : ${empresaNome}">
-                        <td th:text="${empresa.id_empresa}"></td>
-                        <td th:text="${empresa.nome}"></td>
-                        <td th:text="${empresa.cnpj}"></td>
-                        <td th:text="${empresa.ramo}"></td>
+                    <tr th:each="funcionario : ${funcionarioNome}">
+                        <td th:text="${funcionario.codigo}"></td>
+                        <td th:text="${funcionario.nome}"></td>
+                        <td th:text="${funcionario.salario}"></td>
+                        <td th:text="${funcionario.cargo}"></td>
                     </tr>
                 </tbody>
             </table>

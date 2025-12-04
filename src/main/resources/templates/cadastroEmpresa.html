@@ -138,13 +138,13 @@
 <body>
 
     <div class="form-container">
-        <h2>Cadastrar Empresa</h2>
+        <h2>Cadastrar empresa</h2>
 
         <!-- Formulário para cadastro -->
         <form th:action="@{/empresaCTR/salvarEmpresa}" th:object="${empresa}" method="post">
 
             <div class="form-group">
-                <label for="nome">Nome da Empresa</label>
+                <label for="nome">Nome da empresa</label>
                 <input type="text" th:field="*{nome}" id="nome" placeholder="Digite o nome da empresa" required>
             </div>
 
@@ -154,7 +154,7 @@
             </div>
 
             <div class="form-group">
-                <label for="ramo">Ramo da Empresa</label>
+                <label for="ramo">Ramo da esmpresa</label>
                 <input type="text" th:field="*{ramo}" id="ramo" required>
             </div>
 

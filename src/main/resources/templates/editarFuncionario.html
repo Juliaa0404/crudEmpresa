@@ -144,7 +144,7 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Editar Funcionário</h2>
+        <h2>Editar funcionário</h2>
 
         <form th:action="@{'/funcionarioCTR/atualizarFuncionario/'+${funcionario.codigo}}" th:object="${funcionario}" method="post">
             <div class="form-group">
@@ -173,8 +173,8 @@
                 </select>
             </div>
 
-            <button type="submit">Salvar Alterações</button>
-            <a th:href="@{/funcionarioCTR/listarFunc}">Listar todos os Funcionarios</a>
+            <button type="submit">Salvar alterações</button>
+            <a th:href="@{/funcionarioCTR/listarFunc}">Listar todos os funcionarios</a>
         </form>
     </div>
 </body>
